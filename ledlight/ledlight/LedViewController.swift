@@ -16,6 +16,8 @@ class LedViewController: UIViewController {
         // Do any additional setup after loading the view.
         
 //        self.navigationController?.navigationBar.backgroundColor = UIColor.black();
+        let ledView = LedView(frame: CGRect(x: 30, y: 30, width: 100, height: 50));
+        self.view.addSubview(ledView);
     }
 
     override func didReceiveMemoryWarning() {

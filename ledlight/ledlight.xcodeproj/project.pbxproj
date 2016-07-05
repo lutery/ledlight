@@ -15,6 +15,7 @@
 		75157E181D2BA060002BAFBD /* ledlightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75157E171D2BA060002BAFBD /* ledlightTests.swift */; };
 		75157E231D2BA060002BAFBD /* ledlightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75157E221D2BA060002BAFBD /* ledlightUITests.swift */; };
 		75157E311D2BBA85002BAFBD /* LedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75157E301D2BBA85002BAFBD /* LedViewController.swift */; };
+		7516F0501D2BF537003422FD /* LedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516F04F1D2BF537003422FD /* LedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		75157E221D2BA060002BAFBD /* ledlightUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ledlightUITests.swift; sourceTree = "<group>"; };
 		75157E241D2BA060002BAFBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75157E301D2BBA85002BAFBD /* LedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedViewController.swift; sourceTree = "<group>"; };
+		7516F04F1D2BF537003422FD /* LedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				75157E0B1D2BA060002BAFBD /* LaunchScreen.storyboard */,
 				75157E0E1D2BA060002BAFBD /* Info.plist */,
 				75157E301D2BBA85002BAFBD /* LedViewController.swift */,
+				7516F04F1D2BF537003422FD /* LedView.swift */,
 			);
 			path = ledlight;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7516F0501D2BF537003422FD /* LedView.swift in Sources */,
 				75157E311D2BBA85002BAFBD /* LedViewController.swift in Sources */,
 				75157E051D2BA060002BAFBD /* ViewController.swift in Sources */,
 				75157E031D2BA060002BAFBD /* AppDelegate.swift in Sources */,
@@ -509,6 +513,7 @@
 				75157E291D2BA060002BAFBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75157E2A1D2BA060002BAFBD /* Build configuration list for PBXNativeTarget "ledlightTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +522,7 @@
 				75157E2C1D2BA060002BAFBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75157E2D1D2BA060002BAFBD /* Build configuration list for PBXNativeTarget "ledlightUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +531,7 @@
 				75157E2F1D2BA060002BAFBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
