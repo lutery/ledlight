@@ -16,8 +16,13 @@ class LedViewController: UIViewController {
         // Do any additional setup after loading the view.
         
 //        self.navigationController?.navigationBar.backgroundColor = UIColor.black();
-        let ledView = LedView(frame: CGRect(x: 30, y: 30, width: 100, height: 50));
+//        let ledView = LedView(frame: CGRect(x: 30, y: 30, width: 100, height: 50));
+        let ledView = LedView();
+        ledView.translatesAutoresizingMaskIntoConstraints = false;
         self.view.addSubview(ledView);
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-padding-[ledView]-padding-|", options: [], metrics: ["padding":0], views: ["ledView":ledView]));
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-padding-[ledView]-padding-|", options: [], metrics: ["padding":0], views: ["ledView":ledView]));
     }
 
     override func didReceiveMemoryWarning() {
