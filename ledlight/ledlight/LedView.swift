@@ -20,7 +20,7 @@ class LedView: UIView {
 
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext();
-        context?.setFillColor(UIColor.red().cgColor);
+        context?.setFillColor(UIColor.black().cgColor);
         context?.fill(rect);
     }
 }
