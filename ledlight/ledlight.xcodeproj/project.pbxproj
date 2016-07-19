@@ -421,6 +421,7 @@
 		75157E281D2BA060002BAFBD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ledlight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -434,6 +435,7 @@
 		75157E291D2BA060002BAFBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ledlight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
