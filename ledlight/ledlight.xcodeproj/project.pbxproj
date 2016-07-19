@@ -16,6 +16,7 @@
 		75157E231D2BA060002BAFBD /* ledlightUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75157E221D2BA060002BAFBD /* ledlightUITests.swift */; };
 		75157E311D2BBA85002BAFBD /* LedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75157E301D2BBA85002BAFBD /* LedViewController.swift */; };
 		7516F0501D2BF537003422FD /* LedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516F04F1D2BF537003422FD /* LedView.swift */; };
+		E62857351D3E2E83009A7597 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E62857341D3E2E83009A7597 /* ImageHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,9 @@
 		75157E241D2BA060002BAFBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75157E301D2BBA85002BAFBD /* LedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedViewController.swift; sourceTree = "<group>"; };
 		7516F04F1D2BF537003422FD /* LedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LedView.swift; sourceTree = "<group>"; };
+		E62857321D3E2E83009A7597 /* ledlight-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ledlight-Bridging-Header.h"; sourceTree = "<group>"; };
+		E62857331D3E2E83009A7597 /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
+		E62857341D3E2E83009A7597 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		75157E011D2BA060002BAFBD /* ledlight */ = {
 			isa = PBXGroup;
 			children = (
+				E62857331D3E2E83009A7597 /* ImageHelper.h */,
+				E62857341D3E2E83009A7597 /* ImageHelper.m */,
 				75157E021D2BA060002BAFBD /* AppDelegate.swift */,
 				75157E041D2BA060002BAFBD /* ViewController.swift */,
 				75157E061D2BA060002BAFBD /* Main.storyboard */,
@@ -109,6 +115,7 @@
 				75157E0E1D2BA060002BAFBD /* Info.plist */,
 				75157E301D2BBA85002BAFBD /* LedViewController.swift */,
 				7516F04F1D2BF537003422FD /* LedView.swift */,
+				E62857321D3E2E83009A7597 /* ledlight-Bridging-Header.h */,
 			);
 			path = ledlight;
 			sourceTree = "<group>";
@@ -201,6 +208,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 598LPM8E28;
 						DevelopmentTeamName = "hui cheng";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					75157E121D2BA060002BAFBD = {
@@ -275,6 +283,7 @@
 				75157E311D2BBA85002BAFBD /* LedViewController.swift in Sources */,
 				75157E051D2BA060002BAFBD /* ViewController.swift in Sources */,
 				75157E031D2BA060002BAFBD /* AppDelegate.swift in Sources */,
+				E62857351D3E2E83009A7597 /* ImageHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,11 +432,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ledlight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.lutery.ledlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ledlight/ledlight-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -437,11 +449,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ledlight/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.com.lutery.ledlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ledlight/ledlight-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

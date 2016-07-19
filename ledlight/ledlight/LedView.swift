@@ -17,6 +17,27 @@ class LedView: UIView {
     var circularPos:[CGPoint]? = nil;
     var xPoints = 0;
     var yPoints = 0;
+    var shortPoint:Int{
+        get{
+            if xPoints > yPoints {
+                return yPoints;
+            }
+            else{
+                return xPoints;
+            }
+        }
+    }
+    
+    var longPoint:Int{
+        get{
+            if xPoints > yPoints {
+                return xPoints;
+            }
+            else{
+                return yPoints;
+            }
+        }
+    }
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -63,6 +84,40 @@ class LedView: UIView {
         context?.setFillColor(ledColor.cgColor);
         for curPos in circularPos! {
             context?.fillEllipse(in: CGRect(x: Int(curPos.x - CGFloat(halfRadius)), y: Int(curPos.y - CGFloat(halfRadius)), width: 16, height: 16));
+        }
+    }
+    
+    func setDisplayTest(_ displayText:NSString){
+        let screenBound = UIScreen.main().bounds;
+        var drawRect:CGRect? = nil;
+        
+        
+        if screenBound.width > screenBound.height {
+            drawRect = CGRect(x: 0, y: 0, width: longPoint, height: shortPoint);
+        }
+        else{
+            drawRect = CGRect(x: 0, y: 0, width: shortPoint, height: longPoint);
+        }
+        
+        UIGraphicsBeginImageContext((drawRect?.size)!);
+        let context = UIGraphicsGetCurrentContext();
+        context?.setFillColor(UIColor.white().cgColor);
+        context?.fill(drawRect!);
+        
+        context?.setFillColor(UIColor.black().cgColor);
+        context?.setStrokeColor(UIColor.black().cgColor);
+        let font = UIFont.systemFont(ofSize: CGFloat(shortPoint));
+        displayText.draw(in: drawRect!, withAttributes: font.fontDescriptor().fontAttributes());
+        var newImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+//        let imageHelper = ImageHelper();
+        let imageData = ImageHelper.convertUIImage(toBitmapRGBA8: newImage);
+        let count = xPoints * yPoints;
+        for i in 0..<count {
+            let r = imageData?[i * 4];
+            let g = imageData?[i * 4 + 1];
+            let b = imageData?[i * 4 + 2];
+            let a = imageData?[i * 4 + 3];
         }
     }
 }
