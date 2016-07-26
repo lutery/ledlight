@@ -16,7 +16,7 @@
     
 }
 
-+ (unsigned char *) convertUIImageToBitmapRGBA8:(UIImage* )image;
++ (unsigned char *) convertUIImageToBitmapRGBA8:(UIImage* )image bytePerRow:(int*)bytes;
 
 + (CGContextRef) newBitmapRGBA8ContextFromImage:(CGImageRef)image;
 

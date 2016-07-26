@@ -35,7 +35,8 @@ class ViewController: UIViewController {
         
         //从故事版生成Controller对象
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        let ledViewController = mainStoryboard.instantiateViewController(withIdentifier: "ledVC");
+        let ledViewController = mainStoryboard.instantiateViewController(withIdentifier: "ledVC") as! LedViewController;
+        ledViewController.displayText = content;
         //导航到生存的控制器对象
         self.navigationController?.pushViewController(ledViewController, animated: true);
     }

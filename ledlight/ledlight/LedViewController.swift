@@ -9,6 +9,8 @@
 import UIKit
 
 class LedViewController: UIViewController {
+    
+    var displayText:String? = nil;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,9 @@ class LedViewController: UIViewController {
 //        self.navigationController?.navigationBar.backgroundColor = UIColor.black();
 //        let ledView = LedView(frame: CGRect(x: 30, y: 30, width: 100, height: 50));
         let ledView = LedView();
+        if displayText != nil {
+            ledView.setDisplayText((self.displayText)!);
+        } 
         //设置属性为false，表示这个视图对象需要从代码层级去控制
         ledView.translatesAutoresizingMaskIntoConstraints = false;
         //添加到当前的视图上

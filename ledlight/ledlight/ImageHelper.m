@@ -17,7 +17,7 @@
  *
  *  @return <#return value description#>
  */
-+ (unsigned char *) convertUIImageToBitmapRGBA8:(UIImage*)image{
++ (unsigned char *) convertUIImageToBitmapRGBA8:(UIImage*)image bytePerRow:(int*)bytes{
     CGImageRef imageRef = image.CGImage;
     
     CGContextRef context = [self newBitmapRGBA8ContextFromImage:imageRef];
@@ -42,6 +42,7 @@
     
     if (bitmapData){
         newBitmap = (unsigned char*)malloc(sizeof(unsigned char) * bytesPerRow * height);
+        *bytes = (int)bytesPerRow;
         
         if (newBitmap){
             for (int i = 0; i < bufferLength; ++i){

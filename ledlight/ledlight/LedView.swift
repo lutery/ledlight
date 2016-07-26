@@ -13,6 +13,7 @@ class LedView: UIView {
     let radius = 16;
     let halfRadius = 8;
     var ledColor = UIColor.white();
+    var ledLightColor = UIColor.green();
     var bgColor = UIColor.black();
     var circularPos:[CGPoint]? = nil;
     var xPoints = 0;
@@ -38,6 +39,8 @@ class LedView: UIView {
             }
         }
     }
+    
+    var imgShowData:[[UInt8]]? = nil;
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -81,23 +84,38 @@ class LedView: UIView {
         context?.setFillColor(bgColor.cgColor);
         context?.fill(rect);
         
-        context?.setFillColor(ledColor.cgColor);
-        for curPos in circularPos! {
-            context?.fillEllipse(in: CGRect(x: Int(curPos.x - CGFloat(halfRadius)), y: Int(curPos.y - CGFloat(halfRadius)), width: 16, height: 16));
+        var curPos = 0;
+        for curPoint in circularPos! {
+            let yPos = Int(curPos / xPoints);
+            let xPos = Int(curPos % xPoints);
+            
+            print("yPos = \(yPos), xPos = \(xPos)");
+            
+            if imgShowData?[yPos][xPos] > 128 {
+                context?.setFillColor(ledColor.cgColor);
+                context?.fillEllipse(in: CGRect(x: Int(curPoint.x - CGFloat(halfRadius)), y: Int(curPoint.y - CGFloat(halfRadius)), width: 16, height: 16));
+            }
+//            else{
+//                context?.setFillColor(ledLightColor.cgColor);
+//                context?.fillEllipse(in: CGRect(x: Int(curPoint.x - CGFloat(halfRadius)), y: Int(curPoint.y - CGFloat(halfRadius)), width: 16, height: 16));
+//            }
+            
+            curPos += 1;
         }
     }
     
-    func setDisplayTest(_ displayText:NSString){
+    func setDisplayText(_ displayText:NSString){
         let screenBound = UIScreen.main().bounds;
         var drawRect:CGRect? = nil;
         
         
-        if screenBound.width > screenBound.height {
-            drawRect = CGRect(x: 0, y: 0, width: longPoint, height: shortPoint);
-        }
-        else{
-            drawRect = CGRect(x: 0, y: 0, width: shortPoint, height: longPoint);
-        }
+//        if screenBound.width > screenBound.height {
+//            drawRect = CGRect(x: 0, y: 0, width: longPoint, height: shortPoint);
+//        }
+//        else{
+//            drawRect = CGRect(x: 0, y: 0, width: shortPoint, height: longPoint);
+//        }
+        drawRect = CGRect(x: 0, y: 0, width: longPoint * (displayText.length + 1), height: shortPoint);
         
         UIGraphicsBeginImageContext((drawRect?.size)!);
         let context = UIGraphicsGetCurrentContext();
@@ -111,13 +129,35 @@ class LedView: UIView {
         var newImage = UIGraphicsGetImageFromCurrentImageContext();
         
 //        let imageHelper = ImageHelper();
-        let imageData = ImageHelper.convertUIImage(toBitmapRGBA8: newImage);
+        imgShowData = [[UInt8]]();
+        var bytePerRow:Int32 = 0;
+        let imageData = ImageHelper.convertUIImage(toBitmapRGBA8: newImage, bytePerRow: &bytePerRow);
         let count = xPoints * yPoints;
+        print("xPoints = \(xPoints)");
+        print("yPoints = \(yPoints)");
+        print("count = \(count)");
+        var curPos = 0;
+        var pointPerRow = Int(bytePerRow / 4);
+//        var curShowData = Array<UInt8>(repeating:0, count:Int(bytePerRow));
+        var curShowData = [UInt8]();
         for i in 0..<count {
-            let r = imageData?[i * 4];
-            let g = imageData?[i * 4 + 1];
-            let b = imageData?[i * 4 + 2];
-            let a = imageData?[i * 4 + 3];
+            let r:UInt8 = (imageData?[i * 4])!;
+            let g:UInt8 = (imageData?[i * 4 + 1])!;
+            let b:UInt8 = (imageData?[i * 4 + 2])!;
+            let a:UInt8 = (imageData?[i * 4 + 3])!;
+            
+            let tempR = CGFloat(r) * 0.299;
+            let tempG = CGFloat(g) * 0.587;
+            let tempB = CGFloat(b) * 0.114;
+            let gray:UInt8 = UInt8(tempR + tempG + tempB);
+            
+            curShowData.append(gray);
+            
+            if Int(curShowData.count) == pointPerRow {
+                imgShowData?.append(curShowData);
+                curShowData = [UInt8]();
+//                curShowData = Array<UInt8>(repeating:0, count:Int(bytePerRow));
+            }
         }
     }
 }
