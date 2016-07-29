@@ -63,8 +63,8 @@ class LedView: UIView {
         let startPoint = CGPoint(x: 16, y: 16);
         circularPos = [CGPoint]();
         
-        for i in 0...yPoints {
-            for j in 0...xPoints {
+        for i in 0..<yPoints {
+            for j in 0..<xPoints {
                 let curPoint = CGPoint(x: Int(startPoint.x + CGFloat(j * radius * 2)), y: Int(startPoint.y + CGFloat(i * radius * 2)));
                 circularPos?.append(curPoint);
             }
@@ -89,19 +89,22 @@ class LedView: UIView {
             let height = showData.count;
             let width = showData[0].count;
             
+            print("height = \(height), width = \(width)");
+            
             for curPoint in circularPos! {
             
                 let yPos = Int(curPos / xPoints);
                 let xPos = Int(curPos % xPoints);
                 
-                print("yPos = \(yPos), xPos = \(xPos)");
+//                print("yPos = \(yPos), xPos = \(xPos)");
                 
                 if yPos >= height || xPos >= width {
                     context?.setFillColor(ledColor.cgColor);
                     context?.fillEllipse(in: CGRect(x: Int(curPoint.x - CGFloat(halfRadius)), y: Int(curPoint.y - CGFloat(halfRadius)), width: 16, height: 16));
                 }
                 else{
-                    if imgShowData?[yPos][xPos] < 150 {
+                    print("imgShowData[\(yPos)][\(xPos)] = \(imgShowData?[yPos][xPos])");
+                    if imgShowData?[yPos][xPos] < 128 {
                         context?.setFillColor(ledLightColor.cgColor);
                         context?.fillEllipse(in: CGRect(x: Int(curPoint.x - CGFloat(halfRadius)), y: Int(curPoint.y - CGFloat(halfRadius)), width: 16, height: 16));
                     }
@@ -178,14 +181,16 @@ class LedView: UIView {
         displayText.draw(in: drawRect!, withAttributes: font.fontDescriptor().fontAttributes());
         var newImage = UIGraphicsGetImageFromCurrentImageContext();
         
+        print("newImage size is \(newImage?.size)");
+        
 //        UIImageWriteToSavedPhotosAlbum(newImage!, self, "image:didFinishSavingWithError:contextInfo:", nil);
-//        UIImageWriteToSavedPhotosAlbum(newImage!, nil, nil, nil);
+        UIImageWriteToSavedPhotosAlbum(newImage!, nil, nil, nil);
         
 //        let imageHelper = ImageHelper();
         imgShowData = [[UInt8]]();
         var bytePerRow:Int32 = 0;
         let imageData = ImageHelper.convertUIImage(toBitmapRGBA8: newImage, bytePerRow: &bytePerRow);
-        let count = xPoints * yPoints;
+        let count = Int((newImage?.size.width)! * (newImage?.size.height)!);
         print("xPoints = \(xPoints)");
         print("yPoints = \(yPoints)");
         print("count = \(count)");
@@ -214,5 +219,7 @@ class LedView: UIView {
                 print(j += 1);
             }
         }
+        
+        print(imgShowData);
     }
 }
